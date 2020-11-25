@@ -161,23 +161,21 @@
                         text: pokemon.charAt(0).toUpperCase() + pokemon.slice(1) + " Base Status"
                     },
                     axisX:{
-
                         interval: 1,
-                        labelFontSize: 14,
+                        labelFontSize: 16,
                     },
                     axisY2:{
-
                         interval: 80,
                         labelFormatter: function(e){
                             return "";
                         },
-                        gridColor: "rgba(1,77,101,.1)",
+                        gridColor: "transparent",
                     },
                     data: [{
                         type: "bar",
                         axisYType: "secondary",
                         indexLabel: "{y}",
-                        indexLabelFontSize: 14,
+                        indexLabelFontSize: 16,
                         dataPoints:  [
                             {label: "Speed", y: speed, color:'rgba(255,99,132,1)'},
                             {label: "Sp.Def", y: spdef, color:'rgba(54, 162, 235, 1)'},
