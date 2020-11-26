@@ -224,7 +224,6 @@
         <p>© 2020 Pokémon API Client</p>
     </div>
 </footer>
-</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
@@ -354,7 +353,7 @@
 
                 if(speed <= 20){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-1";}
                 else if(speed > 20 && speed < 60){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";}
-                else if(speed > 60 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
+                else if(speed >= 60 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
                 else if(speed >= 90 && speed < 120){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";}
                 else if(speed >= 120 && speed < 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";}
                 else if(speed >= 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";}
@@ -382,6 +381,5 @@
         })
     });
 </script>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
