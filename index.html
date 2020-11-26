@@ -6,6 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <style>
+        .type-icon {
+            display: inline-block;
+            width: 90px;
+            margin-bottom: 4px;
+            background: #dbdbdb;
+            border: 1px solid #a3a3a3;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.2);
+            color: #fff;
+            font-size: .75rem;
+            font-weight: normal;
+            line-height: 1.3rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+            transition: opacity .4s;
+        }
+
+        .type-normal {
+            background-color: #aa9;
+        }
+        .type-fire {
+            background-color: #f42;
+        }
+        .type-water {
+            background-color: #39f;
+        }
+        .type-electric {
+            background-color: #fc3;
+        }
+        .type-grass {
+            background-color: #7c5;
+        }
+        .type-ice {
+            background-color: #6cf;
+        }
+        .type-fighting {
+            background-color: #b54;
+        }
+        .type-poison {
+            background-color: #a59;
+        }
+        .type-ground {
+            background-color: #db5;
+        }
+        .type-psychic {
+            background-color: #f59;
+        }
+        .type-bug {
+            background-color: #ab2;
+        }
+        .type-rock {
+            background-color: #ba6;
+        }
+        .type-ghost {
+            background-color: #66b;
+        }
+        .type-dragon {
+            background-color: #76e;
+        }
+        .type-dark {
+            background-color: #754;
+        }
+        .type-steel {
+            background-color: #aab;
+        }
+        .type-fairy {
+            background-color: #e9e;
+        }
+
+    </style>
 </head>
 <body>
 <div class="container pt-4">
@@ -33,52 +105,50 @@
     <div class="card" id="cardPokemon" style="display: none">
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                 <img class="img-fluid" src="" id="imagemPokemon" width="500">
                 </div>
-                <div class="col-lg-4">
-                <div class="form-group">
-                    <label for="pokemonNome">Pokémon:</label>
-                    <input class="form-control" type="text" id="pokemonNome" readonly>
-                </div>
-                    <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea class="form-control" rows="5" id="descricao" readonly></textarea>
-                    </div>
-                <div class="form-group">
-                    <label for="dexNumber">Nº da National Dex:</label>
-                    <input class="form-control" type="text" id="dexNumber" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="ability1">Habilidade 1:</label>
-                    <input class="form-control" type="text" id="ability1" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="ability2">Habilidade 2:</label>
-                    <input class="form-control" type="text" id="ability2" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="ability3">Habilidade 3:</label>
-                    <input class="form-control" type="text" id="ability3" readonly>
-                </div>
-                <div class="form-group">
-                    <label>Tipo:</label>
-                <div class="input-group">
-                    <input type="text" id="type1" class="form-control" readonly>
-                    <input type="text" id="type2" class="form-control" readonly>
-                </div>
-                </div>
-                <div class="form-group">
-                    <label for="peso">Peso:</label>
-                    <input class="form-control" type="text" id="peso" readonly>
-                </div>
-                    <div class="form-group">
-                        <label>Egg Groups:</label>
-                        <div class="input-group">
-                            <input type="text" id="egg_group1" class="form-control" readonly>
-                            <input type="text" id="egg_group2" class="form-control" readonly>
-                        </div>
-                    </div>
+                <div class="col-lg-7">
+                    <table class="table mt-3">
+                        <tbody>
+                        <tr>
+                            <th class="text-secondary text-center">Pokémon:</th>
+                            <td colspan="2" id="pokemonNome"> </td>
+                        </tr>
+                        <tr>
+                            <th class="text-secondary text-center" style="white-space: nowrap">National Dex Nº:</th>
+                            <td colspan="2" id="numberDex"> </td>
+                        </tr>
+                        <tr>
+                            <th class="text-secondary text-center">Type:</th>
+                            <td style="white-space: nowrap;">
+                            <span id="type1" class=""> </span>
+                            <span id="type2" class=""> </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-secondary text-center">Habilidades:</th>
+                            <td colspan="2">
+                                <span id="ability1"> </span> <br/>
+                                <span id="ability2"> </span> <br/>
+                                <span id="ability3"> </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-secondary text-center">Egg Groups:</th>
+                            <td colspan="2">
+                                <span id="egg-group1"></span> <br/>
+                                <span id="egg-group2"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="text-secondary text-center" style="white-space: nowrap">Peso:</th>
+                            <td colspan="2" id="peso"> </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+            </div>
             </div>
         </div>
             <div class="mt-3" id="chartContainer" style="height: 250px; width: 100%;"></div>
@@ -104,7 +174,11 @@
             //Evita a execução do evento padrão, nesse caso evita o recarregamento da página.
             event.preventDefault();
 
-            const pokemon = $('#pokemon').val();
+            const pokemon = $('#pokemon').val()
+            document.getElementById("type1").innerHTML = '';
+            document.getElementById("type2").innerHTML = '';
+            document.getElementById("egg-group1").innerHTML = null;
+            document.getElementById("egg-group2").innerHTML = null;
 
 
             $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokemon}`, {}, function (data) {
@@ -113,39 +187,48 @@
 
                 document.getElementById("cardPokemon").style.display = "block";
 
-                $('#pokemonNome').val(data.name);
-                $('#dexNumber').val(data.id);
-                $('#peso').val(data.weight);
+                document.getElementById("pokemonNome").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
-                if(data.types[0] == null){
-                    $('#type1').val('');
+                document.getElementById("numberDex").innerHTML= data.id;
+
+                document.getElementById("peso").innerHTML= data.weight;
+
+                if(typeof data.types[0] == null){
+                    document.getElementById("type1").innerHTML = null;
+                    document.getElementById("type1").className = "";
                 }else{
-                    $('#type1').val(data.types[0].type.name);
+                    document.getElementById("type1").innerHTML = data.types[0].type.name.charAt(0).toUpperCase() + data.types[0].type.name.slice(1);
+                    document.getElementById("type1").className = "type-icon px-3 py-2 type-"+data.types[0].type.name;
+
                 }
 
-                if(data.types[1] == null){
-                    $('#type2').val('');
+                if(typeof data.types[1] == 'undefined'){
+                    document.getElementById("type2").innerHTML = null;
+                    document.getElementById("type2").className = "";
                 }else{
-                    $('#type2').val(data.types[1].type.name);
+                    document.getElementById("type2").innerHTML = data.types[1].type.name.charAt(0).toUpperCase() + data.types[1].type.name.slice(1);
+                    document.getElementById("type2").className = "type-icon px-3 py-2 type-"+data.types[1].type.name;
+
                 }
 
-                if(data.abilities[0] == null){
-                    $('#ability1').val('');
+                if(typeof data.abilities[0] == 'undefined'){
+                    document.getElementById("ability1").innerHTML = null;
                 }else{
-                    $('#ability1').val(data.abilities[0].ability.name);
+                    document.getElementById("ability1").innerHTML = data.abilities[0].ability.name.charAt(0).toUpperCase() + data.abilities[0].ability.name.slice(1);
                 }
 
-                if(data.abilities[1] == null){
-                    $('#ability2').val('');
+                if(typeof data.abilities[1] == 'undefined'){
+                    document.getElementById("ability2").innerHTML = null;
                 }else{
-                    $('#ability2').val(data.abilities[1].ability.name);
+                    document.getElementById("ability2").innerHTML = data.abilities[1].ability.name.charAt(0).toUpperCase() + data.abilities[1].ability.name.slice(1);
                 }
 
-                if(data.abilities[2] == null){
-                    $('#ability3').val('');
+                if(typeof data.abilities[2] == 'undefined'){
+                    document.getElementById("ability3").innerHTML = null;
                 }else{
-                    $('#ability3').val(data.abilities[2].ability.name);
+                    document.getElementById("ability3").innerHTML = data.abilities[2].ability.name.charAt(0).toUpperCase() + data.abilities[2].ability.name.slice(1);
                 }
+
 
                 const hp = data.stats[0].base_stat;
                 const atk = data.stats[1].base_stat;
@@ -163,6 +246,7 @@
                     axisX:{
                         interval: 1,
                         labelFontSize: 16,
+                        labelFontWeight: "bold"
                     },
                     axisY2:{
                         interval: 80,
@@ -176,6 +260,7 @@
                         axisYType: "secondary",
                         indexLabel: "{y}",
                         indexLabelFontSize: 16,
+                        indexLabelFontWeight: "bold",
                         dataPoints:  [
                             {label: "Speed", y: speed, color:'rgba(255,99,132,1)'},
                             {label: "Sp.Def", y: spdef, color:'rgba(54, 162, 235, 1)'},
@@ -192,30 +277,25 @@
 
             $.getJSON(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`, {}, function (data) {
 
-                if(data.egg_groups[0] == null){
-                    $('#egg_group1').val('');
+
+                if(typeof data.egg_groups[0] == 'undefined'){
+                    document.getElementById("egg-group1").innerHTML = null;
                 }else{
-                    $('#egg_group1').val(data.egg_groups[0].name);
+                    document.getElementById("egg-group1").innerHTML = data.egg_groups[0].name.charAt(0).toUpperCase() + data.egg_groups[0].name.slice(1);
                 }
 
-                if(data.egg_groups[1] == null){
-                    $('#egg_group2').val('');
+                if(data.egg_groups[1] == 'undefined'){
+                    document.getElementById("egg-group2").innerHTML = null;
                 }else{
-                    $('#egg_group2').val(data.egg_groups[1].name);
+                    document.getElementById("egg-group2").innerHTML = data.egg_groups[1].name.charAt(0).toUpperCase() + data.egg_groups[1].name.slice(1);
                 }
 
-                document.getElementById('descricao').value = (data.flavor_text_entries[0].flavor_text);
+                document.getElementById('descricao').innerHTML = (data.flavor_text_entries[3].flavor_text);
 
             })
-
-
-
         })
     });
-
-
 </script>
-
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>
