@@ -83,7 +83,10 @@
 
          .cell-barchart{width:100%;min-width:150px}
         .barchart-bar{height:.75rem;border-radius:4px;background-color:#a3a3a3;border:1px solid #737373;border-color:rgba(0,0,0,0.15)}
-        .barchart-rank-1{background-color:#f34444}.barchart-rank-2{background-color:#ff7f0f}
+        .barchart-rank-1{
+            background-color:#f34444;
+        }
+        .barchart-rank-2{background-color:#ff7f0f;}
         .barchart-rank-3{background-color:#ffdd57}.barchart-rank-4{background-color:#a0e515}
         .barchart-rank-5{background-color:#23cd5e}.barchart-rank-6{background-color:#00c2b8}
 
@@ -164,47 +167,47 @@
         </div>
         <h4 id="tituloBase" class="text-center mb-4">Base stats</h4>
         <div class="resp-scroll px-3">
-            <table class="vitals-table mb-3">
+            <table class="table mb-3">
                 <tbody class="text-center px-3">
                 <tr>
                     <th>Hp</th>
                     <td id="hp" class="cell-num">95</td>
-                    <td class="cell-barchart">
-                        <div id="hpcell" style="width:52.78%;" class="barchart-bar barchart-rank-4 "></div>
+                    <td class="cell-barchart align-middle">
+                        <div id="hpcell" style="width:52.78%;" class="barchart-bar"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>Attack</th>
                     <td id="atk" class="cell-num">65</td>
-                    <td class="cell-barchart">
-                        <div id="atkcell" style="width:36.11%;" class="barchart-bar barchart-rank-3 "></div>
+                    <td class="cell-barchart align-middle">
+                        <div id="atkcell" style="width:36.11%;" class="barchart-bar"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>Defense</th>
                     <td id="def" class="cell-num">65</td>
-                    <td class="cell-barchart">
+                    <td class="cell-barchart align-middle">
                         <div id="defcell" style="width:36.11%;" class="barchart-bar"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>Sp. Atk</th>
                     <td id="spa" class="cell-num">110</td>
-                    <td class="cell-barchart">
+                    <td class="cell-barchart align-middle">
                         <div id="spacell" style="width:61.11%;" class="barchart-bar"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>Sp. Def</th>
                     <td id="spdef" class="cell-num">130</td>
-                    <td class="cell-barchart">
+                    <td class="cell-barchart align-middle">
                         <div id="spdefcell" style="width:72.22%;" class="barchart-bar"></div>
                     </td>
                 </tr>
                 <tr>
                     <th>Speed</th>
                     <td id="speed" class="cell-num">60</td>
-                    <td class="cell-barchart">
+                    <td class="cell-barchart align-middle">
                         <div id="speedcell" style="width:33.33%;" class="barchart-bar"></div>
                     </td>
                 </tr>
@@ -312,6 +315,48 @@
                 document.getElementById("spacell").style.width = spatk / 1.8 + '%';
                 document.getElementById("spdefcell").style.width = spdef / 1.8 + '%';
                 document.getElementById("speedcell").style.width = speed / 1.8 + '%';
+
+                if(hp <= 20){document.getElementById("hpcell").className = "barchart-bar barchart-rank-1";}
+                if(hp > 20 && hp < 60){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-2";}
+                if(hp >= 60 && hp < 90){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-3";}
+                if(hp >= 90 && hp < 130){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-4";}
+                if(hp >= 130 && hp < 152){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-5";}
+                if(hp >= 152){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-6";}
+
+                if(atk <= 20){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-1";}
+                if(atk > 20 && atk < 60){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-2";}
+                if(atk >= 60 && atk < 90){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-3";}
+                if(atk >= 90 && atk < 130){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-4";}
+                if(atk >= 130 && atk < 150){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-5";}
+                if(atk >= 152){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-6";}
+
+                if(def <= 20){ document.getElementById("defcell").className = "barchart-bar barchart-rank-1";}
+                if(def > 20 && def < 60){ document.getElementById("defcell").className = "barchart-bar barchart-rank-2";}
+                if(def >= 60 && def < 90){ document.getElementById("defcell").className = "barchart-bar barchart-rank-3";}
+                if(def >= 90 && def < 130){ document.getElementById("defcell").className = "barchart-bar barchart-rank-4";}
+                if(def >= 130 && def < 152){ document.getElementById("defcell").className = "barchart-bar barchart-rank-5";}
+                if(def >= 152){ document.getElementById("defcell").className = "barchart-bar barchart-rank-6";}
+
+                if(spatk <= 20){ document.getElementById("spacell").className = "barchart-bar barchart-rank-1";}
+                if(spatk > 20 && spatk < 60){ document.getElementById("spacell").className = "barchart-bar barchart-rank-2";}
+                if(spatk >= 60 && spatk < 90){ document.getElementById("spacell").className = "barchart-bar barchart-rank-3";}
+                if(spatk >= 90 && spatk < 130){ document.getElementById("spacell").className = "barchart-bar barchart-rank-4";}
+                if(spatk >= 130 && spatk < 152){ document.getElementById("spacell").className = "barchart-bar barchart-rank-5";}
+                if(spatk >= 152){ document.getElementById("spacell").className = "barchart-bar barchart-rank-6";}
+
+                if(spdef <= 20){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-1";}
+                if(spdef > 20 && spdef < 60){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-2";}
+                if(spdef >= 60 && spdef < 90){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-3";}
+                if(spdef >= 90 && spdef < 130){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-4";}
+                if(spdef >= 130 && spdef < 152){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-5";}
+                if(spdef >= 152){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-6";}
+
+                if(speed <= 20){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-1";}
+                else if(speed > 20 && speed < 60){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";}
+                else if(speed > 59 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
+                else if(speed >= 90 && speed < 130){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";}
+                else if(speed >= 130 && speed < 152){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";}
+                else if(speed >= 152){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";}
 
             })
 
