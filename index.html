@@ -162,7 +162,7 @@
                 </div>
             </div>
         </div>
-        <h2 class="text-center mb-2">Base stats</h2>
+        <h4 id="tituloBase" class="text-center mb-4">Base stats</h4>
         <div class="resp-scroll px-3">
             <table class="vitals-table mb-3">
                 <tbody class="text-center px-3">
@@ -252,6 +252,8 @@
                 document.getElementById("numberDex").innerHTML= data.id;
 
                 document.getElementById("peso").innerHTML= data.weight;
+
+                document.getElementById("tituloBase").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1) + " Base Stats";
 
                 if(typeof data.types[0] == null){
                     document.getElementById("type1").innerHTML = null;
