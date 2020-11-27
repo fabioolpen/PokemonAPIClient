@@ -352,11 +352,11 @@
                 if(spdef >= 150){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-6";}
 
                 if(speed <= 20){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-1";}
-                else if(speed > 20 && speed < 60){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";}
-                else if(speed >= 60 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
-                else if(speed >= 90 && speed < 120){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";}
-                else if(speed >= 120 && speed < 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";}
-                else if(speed >= 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";}
+                if(speed > 20 && speed < 60){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";}
+                if(speed >= 60 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
+                if(speed >= 90 && speed < 120){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";}
+                if(speed >= 120 && speed < 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";}
+                if(speed >= 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";}
 
             })
 
@@ -369,7 +369,7 @@
                     document.getElementById("egg-group1").innerHTML = data.egg_groups[0].name.charAt(0).toUpperCase() + data.egg_groups[0].name.slice(1);
                 }
 
-                if(data.egg_groups[1] == 'undefined'){
+                if(typeof data.egg_groups[1] == 'undefined'){
                     document.getElementById("egg-group2").innerHTML = null;
                 }else{
                     document.getElementById("egg-group2").innerHTML = data.egg_groups[1].name.charAt(0).toUpperCase() + data.egg_groups[1].name.slice(1);
