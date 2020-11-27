@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
     <style>
+        @font-face {
+            font-family: PokemonHollow;
+            src: url('Pokemonhollow.ttf');
+        }
+
+        .poke-titulo{
+            font-family: PokemonHollow;
+            color: #ffffff;
+
+        }
+        .jumbotron{
+            opacity: 0.6;
+        }
         .type-icon {
             display: inline-block;
             width: 70px;
@@ -80,27 +93,21 @@
             background-color: #e9e;
         }
 
-
-         .cell-barchart{width:100%;min-width:150px}
+        .cell-barchart{width:100%;min-width:150px}
         .barchart-bar{height:.75rem;border-radius:4px;background-color:#a3a3a3;border:1px solid #737373;border-color:rgba(0,0,0,0.15); max-width: 100%;}
-        .barchart-rank-1{
-            background-color:#f34444;
-        }
+        .barchart-rank-1{background-color:#f34444;}
         .barchart-rank-2{background-color:#ff7f0f;}
-        .barchart-rank-3{background-color:#ffdd57}.barchart-rank-4{background-color:#a0e515}
-        .barchart-rank-5{background-color:#23cd5e}.barchart-rank-6{background-color:#00c2b8}
-
-
-
+        .barchart-rank-3{background-color:#ffdd57}
+        .barchart-rank-4{background-color:#a0e515}
+        .barchart-rank-5{background-color:#23cd5e}
+        .barchart-rank-6{background-color:#00c2b8}
     </style>
 </head>
 <body>
-<div class="container pt-4">
-    <header class="jumbotron text-center">
-        <h1 class="display-4">Pokémon API Client</h1>
-        <p class="lead">Desenvolvido utilizando HTML, Bootstrap e jQuery</p>
-    </header>
-</div>
+<header class="jumbotron bg-primary text-center">
+    <h1 class="poke-titulo display-4">Pokémon API Client</h1>
+    <p class="lead mt-4" style="color: white">Desenvolvido utilizando HTML, Bootstrap e jQuery</p>
+</header>
 <div class="container">
     <div class="card">
         <div class="card-body">
@@ -160,14 +167,13 @@
                             <th class="text-secondary text-center" style="white-space: nowrap">Peso:</th>
                             <td colspan="2" id="peso"> </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <h4 id="tituloBase" class="text-center text-secondary mb-4">Base stats</h4>
-        <div class="resp-scroll px-3">
+        <div class="px-3">
             <table class="table mb-3">
                 <tbody class="text-center px-3">
                 <tr>
@@ -216,14 +222,13 @@
             </table>
         </div>
     </div>
-
+    <hr class="mt-5">
+    <footer class="mastfoot text-center mt-auto">
+        <div class="inner">
+            <p>© 2020 Pokémon API Client</p>
+        </div>
+    </footer>
 </div>
-<hr class="mt-5">
-<footer class="mastfoot text-center mt-auto">
-    <div class="inner">
-        <p>© 2020 Pokémon API Client</p>
-    </div>
-</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
