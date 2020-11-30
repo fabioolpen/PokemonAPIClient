@@ -465,25 +465,12 @@
 
                     var i = 0;
                     const language = "en";
-
-
-                    if (data.flavor_text_entries[0] == 'undefined') {
-                        document.getElementById("descricao").innerHTML = "Este pokémon não tem nenhuma descrição";
-                    } else {
-
-
                         do {
                             i++;
                             document.getElementById("descricao").innerHTML = data.flavor_text_entries[i].flavor_text;
                         } while (data.flavor_text_entries[i].language.name !== language)
-
-                    }
-
                 })
-
         })
-
-
     });
 </script>
 </body>
