@@ -11,9 +11,7 @@
             font-family: PokemonHollow;
             src: url('Pokemonhollow.ttf');
         }
-        .table td, .table th, .table tr{
-            border-top: 1px solid rgba(0, 105, 217, 0.6);
-        }
+
 
         .poke-titulo{
             font-family: PokemonHollow;
@@ -115,7 +113,7 @@
     <p class="lead mt-4" style="color: white">Desenvolvido utilizando HTML, Bootstrap e jQuery</p>
 </header>
 <div class="container">
-    <div class="card" style="border-color: rgba(0,105,217,0.6)">
+    <div class="card" style="border-color: transparent">
         <div class="card-body">
             <form id="formConsultar">
                 <div class="form-group">
@@ -130,7 +128,7 @@
     </div>
 </div>
 <div class="container mt-5">
-    <div class="card" id="cardPokemon" style="display: none; border-color: rgba(0,105,217,0.6);">
+    <div class="card" id="cardPokemon" style="display: none; border: transparent">
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-5">
@@ -173,6 +171,11 @@
                             <th class="text-secondary text-center" style="white-space: nowrap">Peso:</th>
                             <td colspan="2" id="peso"> </td>
                         </tr>
+                        <tr>
+                            <th class="text-secondary text-center">Descrição:</th>
+                            <td colspan="2" id="descricao"> </td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -229,12 +232,13 @@
         </div>
     </div>
     <hr class="mt-5">
-    <footer class="mastfoot text-center mt-auto">
-        <div class="inner">
-            <p>© 2020 Pokémon API Client</p>
-        </div>
-    </footer>
 </div>
+<footer class="mastfoot text-center">
+
+    <div class="inner">
+        <p class="text-secondary font-weight-bold">© 2020 Pokémon API Client</p>
+    </div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
@@ -248,148 +252,238 @@
             //Evita a execução do evento padrão, nesse caso evita o recarregamento da página.
             event.preventDefault();
             const pokemon = $('#pokemon').val()
-            document.getElementById("type1").innerHTML = '';
-            document.getElementById("type2").innerHTML = '';
+
+           // document.getElementById("type1").innerHTML = null;
+            //document.getElementById("type2").innerHTML = null;
+            document.getElementById("descricao").innerHTML = null;
             document.getElementById("egg-group1").innerHTML = null;
             document.getElementById("egg-group2").innerHTML = null;
 
+                $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokemon}`, {}, function (data) {
 
-            $.getJSON(`https://pokeapi.co/api/v2/pokemon/${pokemon}`, {}, function (data) {
+                    document.getElementById("imagemPokemon").src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
 
-                document.getElementById("imagemPokemon").src =`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`;
-
-                document.getElementById("cardPokemon").style.display = "block";
-
-
-                document.getElementById("pokemonNome").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-
-                document.getElementById("numberDex").innerHTML= data.id;
-
-                document.getElementById("peso").innerHTML= data.weight;
-
-                document.getElementById("tituloBase").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1) + " Base Stats";
-
-                if(typeof data.types[0] == null){
-                    document.getElementById("type1").innerHTML = null;
-                    document.getElementById("type1").className = "";
-                }else{
-                    document.getElementById("type1").innerHTML = data.types[0].type.name.charAt(0).toUpperCase() + data.types[0].type.name.slice(1);
-                    document.getElementById("type1").className = "type-icon px-3 py-2 type-"+data.types[0].type.name;
-
-                }
-
-                if(typeof data.types[1] == 'undefined'){
-                    document.getElementById("type2").innerHTML = null;
-                    document.getElementById("type2").className = "";
-                }else{
-                    document.getElementById("type2").innerHTML = data.types[1].type.name.charAt(0).toUpperCase() + data.types[1].type.name.slice(1);
-                    document.getElementById("type2").className = "type-icon px-3 py-2 type-"+data.types[1].type.name;
-
-                }
-
-                if(typeof data.abilities[0] == 'undefined'){
-                    document.getElementById("ability1").innerHTML = null;
-                }else{
-                    document.getElementById("ability1").innerHTML = data.abilities[0].ability.name.charAt(0).toUpperCase() + data.abilities[0].ability.name.slice(1);
-                }
-
-                if(typeof data.abilities[1] == 'undefined'){
-                    document.getElementById("ability2").innerHTML = null;
-                }else{
-                    document.getElementById("ability2").innerHTML = data.abilities[1].ability.name.charAt(0).toUpperCase() + data.abilities[1].ability.name.slice(1);
-                }
-
-                if(typeof data.abilities[2] == 'undefined'){
-                    document.getElementById("ability3").innerHTML = null;
-                }else{
-                    document.getElementById("ability3").innerHTML = data.abilities[2].ability.name.charAt(0).toUpperCase() + data.abilities[2].ability.name.slice(1);
-                }
+                    document.getElementById("cardPokemon").style.display = "block";
 
 
-                const hp = data.stats[0].base_stat;
-                const atk = data.stats[1].base_stat;
-                const def = data.stats[2].base_stat;
-                const spatk = data.stats[3].base_stat;
-                const spdef = data.stats[4].base_stat;
-                const speed = data.stats[5].base_stat;
+                    document.getElementById("pokemonNome").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
-                document.getElementById("hp").innerHTML = hp;
-                document.getElementById("atk").innerHTML = atk;
-                document.getElementById("def").innerHTML = def;
-                document.getElementById("spa").innerHTML = spatk;
-                document.getElementById("spdef").innerHTML = spdef;
-                document.getElementById("speed").innerHTML = speed;
+                    document.getElementById("numberDex").innerHTML = data.id;
 
-                document.getElementById("hpcell").style.width = hp / 1.8 + '%';
-                document.getElementById("atkcell").style.width = atk / 1.8 + '%';
-                document.getElementById("defcell").style.width = def / 1.8 + '%';
-                document.getElementById("spacell").style.width = spatk / 1.8 + '%';
-                document.getElementById("spdefcell").style.width = spdef / 1.8 + '%';
-                document.getElementById("speedcell").style.width = speed / 1.8 + '%';
+                    document.getElementById("peso").innerHTML = data.weight;
 
-                if(hp <= 20){document.getElementById("hpcell").className = "barchart-bar barchart-rank-1";}
-                if(hp > 20 && hp < 60){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-2";}
-                if(hp >= 60 && hp < 90){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-3";}
-                if(hp >= 90 && hp < 120){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-4";}
-                if(hp >= 120 && hp < 150){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-5";}
-                if(hp >= 150){ document.getElementById("hpcell").className = "barchart-bar barchart-rank-6";}
+                    document.getElementById("tituloBase").innerHTML = data.name.charAt(0).toUpperCase() + data.name.slice(1) + " Base Stats";
 
-                if(atk <= 20){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-1";}
-                if(atk > 20 && atk < 60){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-2";}
-                if(atk >= 60 && atk < 90){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-3";}
-                if(atk >= 90 && atk < 120){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-4";}
-                if(atk >= 120 && atk < 150){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-5";}
-                if(atk >= 150){ document.getElementById("atkcell").className = "barchart-bar barchart-rank-6";}
+                    if (typeof data.types[0] == null) {
+                        document.getElementById("type1").innerHTML = null;
+                        document.getElementById("type1").className = "";
+                    } else {
+                        document.getElementById("type1").innerHTML = data.types[0].type.name.charAt(0).toUpperCase() + data.types[0].type.name.slice(1);
+                        document.getElementById("type1").className = "type-icon px-3 py-2 type-" + data.types[0].type.name;
 
-                if(def <= 20){ document.getElementById("defcell").className = "barchart-bar barchart-rank-1";}
-                if(def > 20 && def < 60){ document.getElementById("defcell").className = "barchart-bar barchart-rank-2";}
-                if(def >= 60 && def < 90){ document.getElementById("defcell").className = "barchart-bar barchart-rank-3";}
-                if(def >= 90 && def < 120){ document.getElementById("defcell").className = "barchart-bar barchart-rank-4";}
-                if(def >= 120 && def < 150){ document.getElementById("defcell").className = "barchart-bar barchart-rank-5";}
-                if(def >= 150){ document.getElementById("defcell").className = "barchart-bar barchart-rank-6";}
+                    }
 
-                if(spatk <= 20){ document.getElementById("spacell").className = "barchart-bar barchart-rank-1";}
-                if(spatk > 20 && spatk < 60){ document.getElementById("spacell").className = "barchart-bar barchart-rank-2";}
-                if(spatk >= 60 && spatk < 90){ document.getElementById("spacell").className = "barchart-bar barchart-rank-3";}
-                if(spatk >= 90 && spatk < 120){ document.getElementById("spacell").className = "barchart-bar barchart-rank-4";}
-                if(spatk >= 120 && spatk < 150){ document.getElementById("spacell").className = "barchart-bar barchart-rank-5";}
-                if(spatk >= 150){ document.getElementById("spacell").className = "barchart-bar barchart-rank-6";}
+                    if (typeof data.types[1] == 'undefined') {
+                        document.getElementById("type2").innerHTML = null;
+                        document.getElementById("type2").className = "";
+                    } else {
+                        document.getElementById("type2").innerHTML = data.types[1].type.name.charAt(0).toUpperCase() + data.types[1].type.name.slice(1);
+                        document.getElementById("type2").className = "type-icon px-3 py-2 type-" + data.types[1].type.name;
 
-                if(spdef <= 20){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-1";}
-                if(spdef > 20 && spdef < 60){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-2";}
-                if(spdef >= 60 && spdef < 90){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-3";}
-                if(spdef >= 90 && spdef < 120){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-4";}
-                if(spdef >= 120 && spdef < 150){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-5";}
-                if(spdef >= 150){ document.getElementById("spdefcell").className = "barchart-bar barchart-rank-6";}
+                    }
 
-                if(speed <= 20){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-1";}
-                if(speed > 20 && speed < 60){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";}
-                if(speed >= 60 && speed < 90){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";}
-                if(speed >= 90 && speed < 120){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";}
-                if(speed >= 120 && speed < 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";}
-                if(speed >= 150){ document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";}
+                    if (typeof data.abilities[0] == 'undefined') {
+                        document.getElementById("ability1").innerHTML = null;
+                    } else {
+                        document.getElementById("ability1").innerHTML = data.abilities[0].ability.name.charAt(0).toUpperCase() + data.abilities[0].ability.name.slice(1);
+                    }
 
-            })
+                    if (typeof data.abilities[1] == 'undefined') {
+                        document.getElementById("ability2").innerHTML = null;
+                    } else {
+                        document.getElementById("ability2").innerHTML = data.abilities[1].ability.name.charAt(0).toUpperCase() + data.abilities[1].ability.name.slice(1);
+                    }
 
-            $.getJSON(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`, {}, function (data) {
+                    if (typeof data.abilities[2] == 'undefined') {
+                        document.getElementById("ability3").innerHTML = null;
+                    } else {
+                        document.getElementById("ability3").innerHTML = data.abilities[2].ability.name.charAt(0).toUpperCase() + data.abilities[2].ability.name.slice(1);
+                    }
 
 
-                if(typeof data.egg_groups[0] == 'undefined'){
-                    document.getElementById("egg-group1").innerHTML = null;
-                }else{
-                    document.getElementById("egg-group1").innerHTML = data.egg_groups[0].name.charAt(0).toUpperCase() + data.egg_groups[0].name.slice(1);
-                }
+                    const hp = data.stats[0].base_stat;
+                    const atk = data.stats[1].base_stat;
+                    const def = data.stats[2].base_stat;
+                    const spatk = data.stats[3].base_stat;
+                    const spdef = data.stats[4].base_stat;
+                    const speed = data.stats[5].base_stat;
 
-                if(typeof data.egg_groups[1] == 'undefined'){
-                    document.getElementById("egg-group2").innerHTML = null;
-                }else{
-                    document.getElementById("egg-group2").innerHTML = data.egg_groups[1].name.charAt(0).toUpperCase() + data.egg_groups[1].name.slice(1);
-                }
+                    document.getElementById("hp").innerHTML = hp;
+                    document.getElementById("atk").innerHTML = atk;
+                    document.getElementById("def").innerHTML = def;
+                    document.getElementById("spa").innerHTML = spatk;
+                    document.getElementById("spdef").innerHTML = spdef;
+                    document.getElementById("speed").innerHTML = speed;
 
-                document.getElementById('descricao').innerHTML = (data.flavor_text_entries[3].flavor_text);
+                    document.getElementById("hpcell").style.width = hp / 1.8 + '%';
+                    document.getElementById("atkcell").style.width = atk / 1.8 + '%';
+                    document.getElementById("defcell").style.width = def / 1.8 + '%';
+                    document.getElementById("spacell").style.width = spatk / 1.8 + '%';
+                    document.getElementById("spdefcell").style.width = spdef / 1.8 + '%';
+                    document.getElementById("speedcell").style.width = speed / 1.8 + '%';
 
-            })
+                    if (hp <= 20) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (hp > 20 && hp < 60) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (hp >= 60 && hp < 90) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (hp >= 90 && hp < 120) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (hp >= 120 && hp < 150) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (hp >= 150) {
+                        document.getElementById("hpcell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                    if (atk <= 20) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (atk > 20 && atk < 60) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (atk >= 60 && atk < 90) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (atk >= 90 && atk < 120) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (atk >= 120 && atk < 150) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (atk >= 150) {
+                        document.getElementById("atkcell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                    if (def <= 20) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (def > 20 && def < 60) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (def >= 60 && def < 90) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (def >= 90 && def < 120) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (def >= 120 && def < 150) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (def >= 150) {
+                        document.getElementById("defcell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                    if (spatk <= 20) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (spatk > 20 && spatk < 60) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (spatk >= 60 && spatk < 90) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (spatk >= 90 && spatk < 120) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (spatk >= 120 && spatk < 150) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (spatk >= 150) {
+                        document.getElementById("spacell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                    if (spdef <= 20) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (spdef > 20 && spdef < 60) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (spdef >= 60 && spdef < 90) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (spdef >= 90 && spdef < 120) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (spdef >= 120 && spdef < 150) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (spdef >= 150) {
+                        document.getElementById("spdefcell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                    if (speed <= 20) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-1";
+                    }
+                    if (speed > 20 && speed < 60) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-2";
+                    }
+                    if (speed >= 60 && speed < 90) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-3";
+                    }
+                    if (speed >= 90 && speed < 120) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-4";
+                    }
+                    if (speed >= 120 && speed < 150) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-5";
+                    }
+                    if (speed >= 150) {
+                        document.getElementById("speedcell").className = "barchart-bar barchart-rank-6";
+                    }
+
+                })
+
+                $.getJSON(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`, {}, function (data) {
+
+
+                    if (typeof data.egg_groups[0] == 'undefined') {
+                        document.getElementById("egg-group1").innerHTML = null;
+                    } else {
+                        document.getElementById("egg-group1").innerHTML = data.egg_groups[0].name.charAt(0).toUpperCase() + data.egg_groups[0].name.slice(1);
+                    }
+
+                    if (typeof data.egg_groups[1] == 'undefined') {
+                        document.getElementById("egg-group2").innerHTML = null;
+                    } else {
+                        document.getElementById("egg-group2").innerHTML = data.egg_groups[1].name.charAt(0).toUpperCase() + data.egg_groups[1].name.slice(1);
+                    }
+
+                    var i = 0;
+                    const language = "en";
+
+
+                    if (data.flavor_text_entries[0] == 'undefined') {
+                        document.getElementById("descricao").innerHTML = "Este pokémon não tem nenhuma descrição";
+                    } else {
+
+
+                        do {
+                            i++;
+                            document.getElementById("descricao").innerHTML = data.flavor_text_entries[i].flavor_text;
+                        } while (data.flavor_text_entries[i].language.name !== language)
+
+                    }
+
+                })
+
         })
+
+
     });
 </script>
 </body>
